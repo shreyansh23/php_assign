@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <title>Home</title></head>
@@ -8,7 +11,8 @@
         <div>
         <a href="index.php">Home </a>
                 <div>
-                <form>
+                <form action="includes/login-inc.php" method="POST">
+
                 <input type="text" name="uid" placeholder="Username/e-ma
 il">
                 <input type="password" name="pwd" placeholder="Password"

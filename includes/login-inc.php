@@ -42,8 +42,8 @@ echo 2;
 				$_SESSION['u_last']=$row['user_last'];
 				$_SESSION['u_email']=$row['user_email'];
 				$_SESSION['u_uid']=$row['user_uid'];
-				header("Location: ../index.php?login=success");
-				exit();
+					header("Location: ../index.php?login=success");
+					exit();
 				
 				}
 			}

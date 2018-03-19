@@ -19,7 +19,7 @@ echo 2;
 	}
 
 	else{
-		$sql="select * from users where user_uid='$uid'";
+		$sql="select * from users where user_uid='$uid' OR user_email='$uid'";
 		$result=mysqli_query($conn,$sql);
 		$resultCheck=mysqli_num_rows($result);
 		if($resultCheck<1)

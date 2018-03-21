@@ -37,7 +37,25 @@ echo 2;
 				exit();
 				}
 				elseif($hashedPwdCheck==true)
-				{$_SESSION['u_id']=$row['user_id'];
+				{
+				if(!empty($_POST["remember"])) {
+				setcookie ("u_uid",$uid,time()+ (10 * 365 * 24 * 60 * 60),"/");
+				setcookie ("u_pwd",$pwd,time()+ (10 * 365 * 24 * 60 * 60),"/");
+			} else {
+				if(isset($_COOKIE["u_uid"])) {
+					setcookie ("u_uid","",time()+ (10 * 365 * 24 * 60 * 60),"/");
+
+				}
+				if(isset($_COOKIE["u_pwd"])) {
+				setcookie ("u_pwd","",time()+ (10 * 365 * 24 * 60 * 60),"/");
+
+
+
+  				}
+			}
+
+				
+				$_SESSION['u_id']=$row['user_id'];
 				$_SESSION['u_first']=$row['user_first'];
 				$_SESSION['u_last']=$row['user_last'];
 				$_SESSION['u_email']=$row['user_email'];

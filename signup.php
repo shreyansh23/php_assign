@@ -2,24 +2,61 @@
 <?php
  include_once 'header.php';
  ?>
-
 <div>
 <section>
 <h2>Signup</h2>
-<form action="includes/signup-inc.php" method="POST">
-	<input type="text" name="first" placeholder="Firstname">
-	<input type="text" name="last" placeholder="Lastname">
-	<input type="text" name="email" placeholder="Email">
-	<input type="text" name="uid" placeholder="Username">
-	<input type="text" name="pwd" placeholder="Password">
-	<button type="submit" name="submit" >Sign up</button>
+<form id ='fo' action="includes/login-inc.php" method="POST" onsubmit="return validate();">
+	<input type="text" name="uid" placeholder="Username" required ><br>
+	<input type="text" name="first" placeholder="Firstname" required><span id="f"></span><br>
+	<input type="text" name="last" placeholder="Lastname" required ><span id="l"></span><br>
+	<input type="email" name="email" placeholder="Email" required><span id="e"></span><br>
+
+	<input type="password" name="pwd" placeholder="Password" required ><span id="p"></span><br>
+	<input type="password" name="cpwd" placeholder="Confirm Password" required><span id="c"></span><br>
+	<input type="number" name="number" placeholder="Number"required ><span id="n"></span><br>
+	<input type="radio" name="gender" value="male" checked> Male<br>
+  	<input type="radio" name="gender" value="female"> Female<br><br>
+     	<button type="submit" name="submit" >Sign up</button>
 </form>
 </section>
 </div>
+<script >function validate(){
 
-<?php
- include_once 'footer.php';
-?>
+var rePhone=/^[6-9]{1}[0-9]{9}$/;
+var reName =/^[\w]+$/;
+var reAge =/^[1-9]{1}[0-9]?$/;
+var reEmail =/[a-zA-Z]{1}[\w]*(@){1}[a-zA-Z]+(.)[a-zA-Z]+$/;
+var error=0;
 
+var form=document.getElementById("fo");
+ var a=form.pwd.value;
+ var b=form.cpwd.value;
 
+if(!reName.test(form.first.value)){error++; document.getElementById("f").innerHTML="INVALID";}
+else {document.getElementById("f").innerHTML="VALID";}
 
+if(!reName.test(form.last.value)){error++; document.getElementById("l").innerHTML="INVALID";}
+else {document.getElementById("l").innerHTML="VALID";}
+
+if(!reEmail.test(form.email.value)){error++; document.getElementById("e").innerHTML="INVALID";}
+else {document.getElementById("e").innerHTML="VALID";}
+
+if(!rePhone.test(form.number.value)){error++; document.getElementById("n").innerHTML="INVALID";}
+else {document.getElementById("n").innerHTML="VALID";}
+if(a==""||b==""){
+	{error++; document.getElementById("c").innerHTML="PLEASE FILL BOTH PASSWORD FIELDS";}
+	{document.getElementById("p").innerHTML="INVALID";}
+}
+else{
+	if(a!=b){error++; document.getElementById("c").innerHTML="PASSWORDS DO NOT MATCH";}
+	else {document.getElementById("c").innerHTML="VALID";}
+}
+if(error==0)
+{return true;}
+else
+{
+return false;
+}
+}</script>
+</body>
+</html>

@@ -3,10 +3,11 @@
  include_once 'header.php';
  ?>
 <div>
+
 <section>
 <h2>Signup</h2>
-<form id ='fo' action="includes/login-inc.php" method="POST" onsubmit="return validate();">
-	<input type="text" name="uid" placeholder="Username" required ><br>
+<form id ='fo' action="includes/signup-inc.php" method="POST" onsubmit="return validate();">
+	<input type="text" name="uid" placeholder="Username" id="u_uid" onkeyup="checkname()" required ><span id="name_status"></span><br>
 	<input type="text" name="first" placeholder="Firstname" required><span id="f"></span><br>
 	<input type="text" name="last" placeholder="Lastname" required ><span id="l"></span><br>
 	<input type="email" name="email" placeholder="Email" required><span id="e"></span><br>
@@ -20,6 +21,9 @@
 </form>
 </section>
 </div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+
 <script >function validate(){
 
 var rePhone=/^[6-9]{1}[0-9]{9}$/;
@@ -57,6 +61,44 @@ else
 {
 return false;
 }
-}</script>
+}
+
+
+function checkname()
+{
+ var name=document.getElementById( "u_uid" ).value;
+	
+ if(name)
+ {
+  $.ajax({
+  type: 'post',
+  url: 'checkdata.php',
+  data: {
+   user_name:name,
+  },
+  success: function (response) {
+   $( '#name_status' ).html(response);
+   if(response=="OK")	
+   {
+    return true;
+console.log(1);	
+   }
+   else
+   {
+    return false;	
+   }
+  }
+  });
+ }
+ else
+ {
+  $( '#name_status' ).html("");
+  return false;
+ }
+}
+
+
+
+</script>
 </body>
 </html>

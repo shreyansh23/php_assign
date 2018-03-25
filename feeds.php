@@ -2,6 +2,7 @@
 <html>
 <body>
 <h1>Common feed page</h1>
+<h2><a href="index.php">Home</a></h2>
 <form action='<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>' method="POST">
 <textarea rows="10" cols="80" placeholder="Add a new post here..." name="comment"></textarea>
 <input type="submit" name="feed">
@@ -10,11 +11,15 @@
 
 <?php
 session_start();
-print_r($_SESSION);
+#print_r($_SESSION);
 
 $u_uid=$_SESSION['u_uid'];
 include_once('includes/dbh-inc.php');
-$comment=$_POST['comment'];
+
+ $uid=mysqli_real_escape_string($conn,htmlspecialchars($_POST['uid']));
+    
+
+$comment=mysqli_real_escape_string($conn,htmlspecialchars($_POST['comment']));
 $date=(date("F d, Y h:i:s", time()));
 if(isset($_POST['feed']))
 {

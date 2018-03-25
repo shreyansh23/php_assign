@@ -11,7 +11,9 @@
 	if(isset($_SESSION['u_id']))
 	
 
-	{echo "Hi ".$_SESSION['u_first']."! You are logged in.";}
+	{echo "Hi ".$_SESSION['u_first']."! You are logged in.";
+	echo '</br><a href="profile.php">	<button>Profile</button></a>
+	<a href="feeds.php">	<button>Feeds</button></a>';}
 ?>
 
 <?php

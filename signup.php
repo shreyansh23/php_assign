@@ -7,7 +7,7 @@
 <section>
 <h2>Signup</h2>
 <form id ='fo' action="includes/signup-inc.php" method="POST" onsubmit="return validate();">
-	<input type="text" name="uid" placeholder="Username" id="u_uid" onkeyup="checkname()" required ><span id="name_status"></span><br>
+	<input type="text" name="uid" placeholder="Username" id="u_uid" onkeyup="checkname()" required ><span id="u"></span><span id="name_status"></span><br>
 	<input type="text" name="first" placeholder="Firstname" required><span id="f"></span><br>
 	<input type="text" name="last" placeholder="Lastname" required ><span id="l"></span><br>
 	<input type="email" name="email" placeholder="Email" required><span id="e"></span><br>
@@ -25,7 +25,7 @@
 
 
 <script >function validate(){
-
+var reUser=/^[a-zA-Z]{1,}$/
 var rePhone=/^[6-9]{1}[0-9]{9}$/;
 var reName =/^[\w]+$/;
 var reAge =/^[1-9]{1}[0-9]?$/;
@@ -36,6 +36,7 @@ var form=document.getElementById("fo");
  var a=form.pwd.value;
  var b=form.cpwd.value;
 
+if(!reUser.test(form.uid.value)){error++;document.getElementById('u').innerHTML="INVALID";}
 if(!reName.test(form.first.value)){error++; document.getElementById("f").innerHTML="INVALID";}
 else {document.getElementById("f").innerHTML="VALID";}
 

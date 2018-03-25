@@ -40,7 +40,8 @@ if ($uploadOk == 0) {
         echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
 
 	$_SESSION['u_dp']= basename( $_FILES["fileToUpload"]["name"]);
-	echo $_SESSION['u_dp'];	
+	echo $_SESSION['u_dp'];
+		header("Location: update.php?dpUpdate=success");	
     } else {
         echo "Sorry, there was an error uploading your file.";
     }
